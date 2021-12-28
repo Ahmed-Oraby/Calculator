@@ -34,6 +34,7 @@ body {
 	background-color: var(--color-bg);
 	text-align: right;
 	padding: 2.5rem;
+	height: 170px;
 }
 
 .calc__text {
@@ -80,4 +81,9 @@ body {
 	grid-column: 3/5;
 	background-color: #e62f89;
 	color: #fff;
+}
+
+.result-small {
+	font-size: 3rem;
+	word-wrap: break-word;
 }

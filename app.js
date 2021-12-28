@@ -14,33 +14,27 @@ equal.addEventListener("click", calculate);
 clear.addEventListener("click", clearAll);
 
 function getData(e) {
-	{
-		let btn = e.target;
-		console.log(btn.className);
-		if (btn.className.includes("num")) {
-			if (!operator) {
-				if (result) {
-					clearAll();
-				}
-				firstOperand += btn.innerText;
-				console.log(firstOperand);
-				output.innerText = firstOperand;
-			} else {
-				secondOperand += btn.innerText;
-				console.log(secondOperand);
-				text.innerText = `${firstOperand} ${operator}`;
-				output.innerText = secondOperand;
+	let btn = e.target;
+	if (btn.className.includes("num")) {
+		if (!operator) {
+			if (result) {
+				clearAll();
 			}
-		} else if (btn.className.includes("op")) {
-			if (firstOperand) {
-				if (secondOperand) {
-					calculate();
-				}
-				operator = btn.innerText;
-				text.innerText = firstOperand;
-				output.innerText = operator;
-				console.log(operator);
+			firstOperand += btn.innerText;
+			output.innerText = firstOperand;
+		} else {
+			secondOperand += btn.innerText;
+			text.innerText = `${firstOperand} ${operator}`;
+			output.innerText = secondOperand;
+		}
+	} else if (btn.className.includes("op")) {
+		if (firstOperand) {
+			if (secondOperand) {
+				calculate();
 			}
+			operator = btn.innerText;
+			text.innerText = firstOperand;
+			output.innerText = operator;
 		}
 	}
 }
@@ -63,6 +57,11 @@ function calculate() {
 			result = firstNum ** secondNum;
 		}
 		result = result.toFixed(1).toString();
+
+		if (result.length > 10) {
+			output.classList.add("result-small");
+		}
+
 		text.innerText = `${firstOperand} ${operator} ${secondOperand}`;
 		output.innerText = result;
 		firstOperand = result;
@@ -78,4 +77,5 @@ function clearAll() {
 	result = 0;
 	text.innerText = 0;
 	output.innerText = 0;
+	output.classList.remove("result-small");
 }
