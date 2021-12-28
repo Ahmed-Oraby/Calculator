@@ -1,81 +1,83 @@
 *,
 *::after,
 *::before {
-  box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 :root {
-  --color-bg: #212121;
-  --color-main: #e0e0e0;
-  --color-text: #b46e7b;
+	--color-bg: #212121;
+	--color-main: #e0e0e0;
+	--color-text: #b46e7b;
 }
 
 html {
-  font-size: 62.5%;
+	font-size: 62.5%;
 }
 
 body {
-  font-family: "Lato", sans-serif;
-  font-size: 1.8rem;
-  line-height: 1.5;
+	font-family: "Lato", sans-serif;
+	font-size: 1.8rem;
+	line-height: 1.5;
+	font-weight: 400;
 }
 
 .calc {
-  max-width: 370px;
-  margin: 5rem auto;
-  border-radius: 10px;
-  overflow: hidden;
+	max-width: 370px;
+	margin: 5rem auto;
+	border-radius: 10px;
+	overflow: hidden;
 }
 
 .calc__header {
-  background-color: var(--color-bg);
-  text-align: right;
-  padding: 2.5rem;
+	background-color: var(--color-bg);
+	text-align: right;
+	padding: 2.5rem;
 }
 
 .calc__text {
-  color: var(--color-text);
-  font-size: 1.8rem;
+	color: var(--color-text);
+	font-size: 2.5rem;
 }
 
 .calc__result {
-  color: #fff;
-  font-size: 5rem;
-  padding-top: 1rem;
+	color: #fff;
+	font-size: 5rem;
+	padding-top: 1rem;
 }
 
 .calc__body {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-template-rows: repeat(5, minmax(0, 90px));
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	grid-template-rows: repeat(5, minmax(0, 90px));
 }
 
 .btn {
-  font-size: 2.5rem;
-  font-weight: 300;
-  outline: none;
-  border: none;
+	font-size: 2.5rem;
+	outline: none;
+	border: none;
 }
 
 .btn-primary {
-  background-color: var(--color-main);
+	background-color: var(--color-main);
 }
 
 .btn-secondary {
-  background-color: #8d52dd;
-  color: #fff;
+	background-color: #8d52dd;
+	color: #fff;
 }
 
 .btn:hover {
-  filter: brightness(0.9);
+	filter: brightness(0.9);
 }
 
 .btn:active {
-  filter: brightness(0.8);
+	filter: brightness(0.8);
 }
 
-#btn-eq {
-  grid-column: 3/5;
-  background-color: #e62f89;
-  color: #fff;
+#btn-equal {
+	grid-column: 3/5;
+	background-color: #e62f89;
+	color: #fff;
 }
