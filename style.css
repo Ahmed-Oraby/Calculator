@@ -16,6 +16,8 @@ html {
 
 body {
   font-family: "Lato", sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.5;
 }
 
 .calc {
@@ -28,7 +30,7 @@ body {
 .calc__header {
   background-color: var(--color-bg);
   text-align: right;
-  padding: 3rem;
+  padding: 2.5rem;
 }
 
 .calc__text {
@@ -39,11 +41,41 @@ body {
 .calc__result {
   color: #fff;
   font-size: 5rem;
-  padding-top: 1.5rem;
+  padding-top: 1rem;
 }
 
 .calc__body {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-template-rows: repeat(5, minmax(0, 100px));
+  grid-template-rows: repeat(5, minmax(0, 90px));
+}
+
+.btn {
+  font-size: 2.5rem;
+  font-weight: 300;
+  outline: none;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--color-main);
+}
+
+.btn-secondary {
+  background-color: #8d52dd;
+  color: #fff;
+}
+
+.btn:hover {
+  filter: brightness(0.9);
+}
+
+.btn:active {
+  filter: brightness(0.8);
+}
+
+#btn-eq {
+  grid-column: 3/5;
+  background-color: #e62f89;
+  color: #fff;
 }
