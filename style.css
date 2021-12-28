@@ -10,6 +10,7 @@
 	--color-bg: #212121;
 	--color-main: #e0e0e0;
 	--color-text: #b46e7b;
+	--animate-delay: 0.25s;
 }
 
 html {
@@ -33,6 +34,11 @@ body {
 	border-radius: 10px;
 	overflow: hidden;
 	box-shadow: 0px 0px 20px 20px lightgray;
+}
+
+.calc__title {
+	text-align: center;
+	padding: 0.5rem;
 }
 
 .calc__header {

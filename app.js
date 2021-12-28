@@ -1,3 +1,4 @@
+const calculator = document.querySelector(".calc");
 const buttons = document.querySelector(".calc__body");
 const output = document.querySelector(".calc__result");
 const text = document.querySelector(".calc__text");
@@ -57,16 +58,24 @@ function calculate() {
 			result = firstNum ** secondNum;
 		}
 		result = result.toFixed(1).toString();
-
-		if (result.length > 10) {
-			output.classList.add("result-small");
-		}
-
 		text.innerText = `${firstOperand} ${operator} ${secondOperand}`;
 		output.innerText = result;
 		firstOperand = result;
 		secondOperand = "";
 		operator = undefined;
+
+		if (result.length > 10) {
+			output.classList.add("result-small");
+		}
+
+		if (result === "Infinity" || result === "-Infinity") {
+			output.innerText = "Really?! 😠";
+			calculator.classList.add("animate__hinge");
+			calculator.addEventListener("animationend", () => {
+				calculator.classList.remove("animate__hinge");
+				clearAll();
+			});
+		}
 	}
 }
 
