@@ -8,7 +8,8 @@ const clear = document.querySelector("#btn-clear");
 var firstOperand = "";
 var secondOperand = "";
 var result = 0;
-var operator;
+var operator = undefined;
+var decimal = false;
 
 buttons.addEventListener("click", getData);
 equal.addEventListener("click", calculate);
@@ -17,6 +18,9 @@ clear.addEventListener("click", clearAll);
 function getData(e) {
 	let btn = e.target;
 	if (btn.className.includes("num")) {
+		if (btn.innerText === "." && decimal) return;
+		if (btn.innerText === ".") decimal = true;
+
 		if (!operator) {
 			if (result) {
 				clearAll();
@@ -33,10 +37,12 @@ function getData(e) {
 			if (secondOperand) {
 				calculate();
 			}
-			operator = btn.innerText;
-			text.innerText = firstOperand;
-			output.innerText = operator;
+		} else {
+			firstOperand = "0";
 		}
+		operator = btn.innerText;
+		text.innerText = firstOperand;
+		output.innerText = operator;
 	}
 }
 
@@ -46,30 +52,32 @@ function calculate() {
 		let secondNum = Number(secondOperand);
 		if (operator === "+") {
 			result = firstNum + secondNum;
-		} else if (operator === "-") {
+		} else if (operator === "−") {
 			result = firstNum - secondNum;
-		} else if (operator === "*") {
+		} else if (operator === "x") {
 			result = firstNum * secondNum;
-		} else if (operator === "/") {
+		} else if (operator === "÷") {
 			result = firstNum / secondNum;
 		} else if (operator === "%") {
 			result = firstNum % secondNum;
 		} else if (operator === "^") {
 			result = firstNum ** secondNum;
 		}
+
 		result = result.toFixed(1).toString();
 		text.innerText = `${firstOperand} ${operator} ${secondOperand}`;
 		output.innerText = result;
 		firstOperand = result;
 		secondOperand = "";
 		operator = undefined;
+		decimal = false;
 
-		if (result.length > 10) {
+		if (result.length > 11) {
 			output.classList.add("result-small");
 		}
 
-		if (result === "Infinity" || result === "-Infinity") {
-			output.innerText = "Really?! 😠";
+		if (result === "Infinity" || result === "-Infinity" || result === "NaN") {
+			output.innerText = "Really?!😠";
 			calculator.classList.add("animate__hinge");
 			calculator.addEventListener("animationend", () => {
 				calculator.classList.remove("animate__hinge");
@@ -84,6 +92,7 @@ function clearAll() {
 	secondOperand = "";
 	operator = undefined;
 	result = 0;
+	decimal = false;
 	text.innerText = 0;
 	output.innerText = 0;
 	output.classList.remove("result-small");

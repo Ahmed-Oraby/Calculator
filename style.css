@@ -10,7 +10,8 @@
 	--color-bg: #212121;
 	--color-main: #e0e0e0;
 	--color-text: #b46e7b;
-	--animate-delay: 0.25s;
+	--animate-delay: 0.3s;
+	--animate-duration: 1.3s;
 }
 
 html {
@@ -62,7 +63,7 @@ body {
 .calc__body {
 	display: grid;
 	grid-template-columns: repeat(4, minmax(0, 1fr));
-	grid-template-rows: repeat(5, minmax(0, 80px));
+	grid-template-rows: repeat(5, minmax(0, 75px));
 }
 
 .btn {
