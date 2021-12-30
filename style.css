@@ -26,7 +26,7 @@ body {
 }
 
 .container {
-	padding: 0 3rem;
+	padding: 0 2rem;
 }
 
 .calc {
@@ -52,12 +52,14 @@ body {
 .calc__text {
 	color: var(--color-text);
 	font-size: 2.5rem;
+	white-space: nowrap;
 }
 
 .calc__result {
 	color: #fff;
-	font-size: 5rem;
+	font-size: 4.8rem;
 	padding-top: 1rem;
+	white-space: nowrap;
 }
 
 .calc__body {
@@ -97,7 +99,11 @@ body {
 
 .result-small {
 	font-size: 3rem;
-	word-wrap: break-word;
+}
+
+.danger {
+	background-color: red;
+	color: white;
 }
 
 .attribution {
