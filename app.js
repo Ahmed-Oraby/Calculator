@@ -11,11 +11,22 @@ var secondOperand = "";
 var result = 0;
 var operator = undefined;
 var decimal = false;
+var danger = false;
 var maxLength = 10;
 
-buttons.addEventListener("click", getData);
-equal.addEventListener("click", calculate);
-clear.addEventListener("click", clearAll);
+addEvents();
+
+function addEvents() {
+	buttons.addEventListener("click", getData);
+	equal.addEventListener("click", calculate);
+	clear.addEventListener("click", clearAll);
+}
+
+function removeEvents() {
+	buttons.removeEventListener("click", getData);
+	equal.removeEventListener("click", calculate);
+	clear.removeEventListener("click", clearAll);
+}
 
 function getData(e) {
 	let btn = e.target;
@@ -40,6 +51,7 @@ function getData(e) {
 		if (firstOperand) {
 			if (secondOperand) {
 				calculate();
+				if (danger) return;
 			}
 		} else {
 			firstOperand = "0";
@@ -51,7 +63,6 @@ function getData(e) {
 }
 
 function calculate() {
-	var danger = false;
 	if (firstOperand && secondOperand) {
 		let firstNum = Number(firstOperand);
 		let secondNum = Number(secondOperand);
@@ -86,20 +97,7 @@ function calculate() {
 
 		lengthCheck(result);
 
-		if (danger) {
-			let intervalID;
-			output.innerText = "";
-			intervalID = setInterval(() => {
-				output.innerText += "😠";
-				title.classList.toggle("danger");
-			}, 150);
-			calculator.classList.add("animate__hinge");
-			calculator.addEventListener("animationend", () => {
-				calculator.classList.remove("animate__hinge");
-				clearAll();
-				clearInterval(intervalID);
-			});
-		}
+		if (danger) dangerAnimation();
 	}
 }
 
@@ -109,6 +107,7 @@ function clearAll() {
 	operator = undefined;
 	result = 0;
 	decimal = false;
+	danger = false;
 	text.innerText = 0;
 	output.innerText = 0;
 	output.classList.remove("result-small");
@@ -121,4 +120,22 @@ function lengthCheck(input) {
 	} else {
 		output.classList.remove("result-small");
 	}
+}
+
+function dangerAnimation() {
+	let intervalID;
+	removeEvents();
+	text.innerText = "";
+	output.innerText = "";
+	intervalID = setInterval(() => {
+		output.innerText += "😠";
+		title.classList.toggle("danger");
+	}, 150);
+	calculator.classList.add("animate__hinge");
+	calculator.addEventListener("animationend", () => {
+		calculator.classList.remove("animate__hinge");
+		clearInterval(intervalID);
+		clearAll();
+		addEvents();
+	});
 }
