@@ -81,11 +81,17 @@ function calculate() {
 			result = firstNum ** secondNum;
 		}
 
-		if (result.toString().includes(".")) {
-			result = result.toFixed(2);
+		if (danger) {
+			dangerAnimation();
+			return;
 		}
-		if (result.toString().includes("e")) {
-			result = Number(result).toPrecision(4);
+
+		result = result.toString();
+		if (result.includes(".")) {
+			result = Number(result).toFixed(2);
+		}
+		if (result.includes("e")) {
+			result = Number(result).toPrecision(3);
 		}
 
 		text.innerText = `${firstOperand} ${operator} ${secondOperand}`;
@@ -94,10 +100,7 @@ function calculate() {
 		secondOperand = "";
 		operator = undefined;
 		decimal = false;
-
 		lengthCheck(result);
-
-		if (danger) dangerAnimation();
 	}
 }
 
