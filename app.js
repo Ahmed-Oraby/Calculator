@@ -17,32 +17,35 @@ var maxLength = 10;
 addEvents();
 
 function addEvents() {
-	buttons.addEventListener("click", getData);
+	buttons.addEventListener("click", displayData);
 	equal.addEventListener("click", calculate);
 	clear.addEventListener("click", clearAll);
 }
 
 function removeEvents() {
-	buttons.removeEventListener("click", getData);
+	buttons.removeEventListener("click", displayData);
 	equal.removeEventListener("click", calculate);
 	clear.removeEventListener("click", clearAll);
 }
 
-function getData(e) {
+function displayData(e) {
 	let btn = e.target;
 	if (btn.className.includes("num")) {
-		if (btn.innerText === "." && decimal) return;
-		if (btn.innerText === ".") decimal = true;
-
 		if (!operator) {
 			if (result) {
 				clearAll();
 			}
+			if (btn.innerText === "." && decimal) return;
+			if (btn.innerText === ".") decimal = true;
 			firstOperand += btn.innerText;
+			if (firstOperand === ".") firstOperand = "0.";
 			output.innerText = firstOperand;
 			lengthCheck(firstOperand);
 		} else {
+			if (btn.innerText === "." && decimal) return;
+			if (btn.innerText === ".") decimal = true;
 			secondOperand += btn.innerText;
+			if (secondOperand === ".") secondOperand = "0.";
 			text.innerText = `${firstOperand} ${operator}`;
 			output.innerText = secondOperand;
 			lengthCheck(secondOperand);
@@ -59,6 +62,7 @@ function getData(e) {
 		operator = btn.innerText;
 		text.innerText = firstOperand;
 		output.innerText = operator;
+		decimal = false;
 	}
 }
 
